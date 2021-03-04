@@ -35,7 +35,7 @@ const items = () => {
 
 const addItem = (product_ids) => {
   var domain = Cypress.env("Url");
-  var urls = allurls();  
+  var urls = allurls();
   product_ids.forEach(function (product) {
     goTo(`https://${domain}/actions${urls["ViewItem"]}${product}`);
     cy.get(`a[href*=${product}]`).click();
@@ -117,7 +117,11 @@ describe("login with username and password", () => {
 
   it("success , add items and verify total prices", () => {
     var pets = items();
-    addItem([pets["Large Angelfish"],pets["With tail Manx"],pets["Adult Male Finch"]]);    
+    addItem([
+      pets["Large Angelfish"],
+      pets["With tail Manx"],
+      pets["Adult Male Finch"],
+    ]);
     removeItem([pets["Adult Male Finch"]]);
     updateCart();
     verifyTotalPrices();
@@ -142,8 +146,12 @@ describe("login with username and password", () => {
   });
 
   it("success , update items and verify total prices", () => {
-    var pets = items();    
-    addItem([pets["Large Angelfish"],pets["With tail Manx"],pets["Adult Male Finch"]]);    
+    var pets = items();
+    addItem([
+      pets["Large Angelfish"],
+      pets["With tail Manx"],
+      pets["Adult Male Finch"],
+    ]);
     //update Quantity Adult Male Finch to 2
     setQuantityByProductId([pets["Adult Male Finch"]], 2);
     updateCart();
@@ -151,8 +159,12 @@ describe("login with username and password", () => {
   });
 
   it("Validating items left in the inventory after a successful purchase", () => {
-    var pets = items();    
-    addItem([pets["Large Angelfish"],pets["With tail Manx"],pets["Adult Male Finch"]]);    
+    var pets = items();
+    addItem([
+      pets["Large Angelfish"],
+      pets["With tail Manx"],
+      pets["Adult Male Finch"],
+    ]);
     updateCart();
     checkout();
     confirmOrder();
@@ -166,8 +178,12 @@ describe("login with username and password", () => {
   it(" Add/update to cart before sign in", () => {
     //signout first
     cy.Signout(Cypress.env("Url"));
-    var pets = items();   
-    addItem([pets["Large Angelfish"],pets["With tail Manx"],pets["Adult Male Finch"]]);    
+    var pets = items();
+    addItem([
+      pets["Large Angelfish"],
+      pets["With tail Manx"],
+      pets["Adult Male Finch"],
+    ]);
     //update Quantity Adult Male Finch to 2
     setQuantityByProductId([pets["Adult Male Finch"]], 2);
     updateCart();
@@ -216,8 +232,12 @@ describe("login with username and password", () => {
   it("users are not allowed to login with a locked user", () => {
     //signout first
     cy.Signout(Cypress.env("Url"));
-    var pets = items();    
-    addItem([pets["Large Angelfish"],pets["With tail Manx"],pets["Adult Male Finch"]]);    
+    var pets = items();
+    addItem([
+      pets["Large Angelfish"],
+      pets["With tail Manx"],
+      pets["Adult Male Finch"],
+    ]);
     //update Quantity Adult Male Finch to 2
     setQuantityByProductId([pets["Adult Male Finch"]], 2);
     updateCart();
