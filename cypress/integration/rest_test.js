@@ -159,7 +159,7 @@ describe("Pet API test suite", () => {
     });
   });
 
-  it("Bug : Delete Pet not found", () => {
+  it("Delete Pet not found", () => {
     var domain = Cypress.env("Resturl");
     var id = -1;
     cy.request({

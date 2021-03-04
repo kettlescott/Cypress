@@ -38,7 +38,6 @@
 | API Test| 
 | ------------- |
 | it("Bug POST invalid input", ()      |
-| it("Bug : Delete Pet not found", ()|
 | it("Bug : Delete Pet Invalid ID supplied string as input id", ()|
 | it("Bug Put Pet not found", () |
 
