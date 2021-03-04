@@ -33,10 +33,9 @@ const items = () => {
   };
 };
 
-const addItem = (category, product_ids) => {
+const addItem = (product_ids) => {
   var domain = Cypress.env("Url");
-  var urls = allurls();
-  goTo(`https://${domain}/actions${urls["ViewCategory"]}${category}`);
+  var urls = allurls();  
   product_ids.forEach(function (product) {
     goTo(`https://${domain}/actions${urls["ViewItem"]}${product}`);
     cy.get(`a[href*=${product}]`).click();
@@ -118,9 +117,7 @@ describe("login with username and password", () => {
 
   it("success , add items and verify total prices", () => {
     var pets = items();
-    addItem("FISH", [pets["Large Angelfish"]]);
-    addItem("CATS", [pets["With tail Manx"]]);
-    addItem("BIRDS", [pets["Adult Male Finch"]]);
+    addItem([pets["Large Angelfish"],pets["With tail Manx"],pets["Adult Male Finch"]]);    
     removeItem([pets["Adult Male Finch"]]);
     updateCart();
     verifyTotalPrices();
@@ -145,10 +142,8 @@ describe("login with username and password", () => {
   });
 
   it("success , update items and verify total prices", () => {
-    var pets = items();
-    addItem("FISH", [pets["Large Angelfish"]]);
-    addItem("CATS", [pets["With tail Manx"]]);
-    addItem("BIRDS", [pets["Adult Male Finch"]]);
+    var pets = items();    
+    addItem([pets["Large Angelfish"],pets["With tail Manx"],pets["Adult Male Finch"]]);    
     //update Quantity Adult Male Finch to 2
     setQuantityByProductId([pets["Adult Male Finch"]], 2);
     updateCart();
@@ -156,10 +151,8 @@ describe("login with username and password", () => {
   });
 
   it("Validating items left in the inventory after a successful purchase", () => {
-    var pets = items();
-    addItem("FISH", [pets["Large Angelfish"]]);
-    addItem("CATS", [pets["With tail Manx"]]);
-    addItem("BIRDS", [pets["Adult Male Finch"]]);
+    var pets = items();    
+    addItem([pets["Large Angelfish"],pets["With tail Manx"],pets["Adult Male Finch"]]);    
     updateCart();
     checkout();
     confirmOrder();
@@ -173,10 +166,8 @@ describe("login with username and password", () => {
   it(" Add/update to cart before sign in", () => {
     //signout first
     cy.Signout(Cypress.env("Url"));
-    var pets = items();
-    addItem("FISH", [pets["Large Angelfish"]]);
-    addItem("CATS", [pets["With tail Manx"]]);
-    addItem("BIRDS", [pets["Adult Male Finch"]]);
+    var pets = items();   
+    addItem([pets["Large Angelfish"],pets["With tail Manx"],pets["Adult Male Finch"]]);    
     //update Quantity Adult Male Finch to 2
     setQuantityByProductId([pets["Adult Male Finch"]], 2);
     updateCart();
@@ -190,7 +181,7 @@ describe("login with username and password", () => {
   it("Bug : bounday test expected count larger than stocks", () => {
     let max_range = 2067;
     var pets = items();
-    addItem("FISH", [pets["Large Angelfish"]]);
+    addItem([pets["Large Angelfish"]]);
     setQuantityByProductId([pets["Large Angelfish"]], max_range);
     updateCart();
     //expected fail here, the Quantity is larger than stocks ,
@@ -201,7 +192,7 @@ describe("login with username and password", () => {
   it("bounday test Quantity is a negative value, total cost should be zero", () => {
     let negative = -1;
     var pets = items();
-    addItem("FISH", [pets["Large Angelfish"]]);
+    addItem([pets["Large Angelfish"]]);
     setQuantityByProductId([pets["Large Angelfish"]], negative);
     updateCart();
     cy.get('input[name="updateCartQuantities"]')
@@ -212,7 +203,7 @@ describe("login with username and password", () => {
   it("Bug : bounday test Quantity is a decimal value, total cost should be zero", () => {
     let negative = 10.5;
     var pets = items();
-    addItem("FISH", [pets["Large Angelfish"]]);
+    addItem([pets["Large Angelfish"]]);
     setQuantityByProductId([pets["Large Angelfish"]], negative);
     updateCart();
     //the decimal value should not be accepted
@@ -225,10 +216,8 @@ describe("login with username and password", () => {
   it("users are not allowed to login with a locked user", () => {
     //signout first
     cy.Signout(Cypress.env("Url"));
-    var pets = items();
-    addItem("FISH", [pets["Large Angelfish"]]);
-    addItem("CATS", [pets["With tail Manx"]]);
-    addItem("BIRDS", [pets["Adult Male Finch"]]);
+    var pets = items();    
+    addItem([pets["Large Angelfish"],pets["With tail Manx"],pets["Adult Male Finch"]]);    
     //update Quantity Adult Male Finch to 2
     setQuantityByProductId([pets["Adult Male Finch"]], 2);
     updateCart();
