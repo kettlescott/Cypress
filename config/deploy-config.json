@@ -1,0 +1,14 @@
+{
+    "env": {
+        "Url": "petstore.octoperf.com",        
+        "UserInfor": {
+		    "account": "scwang",
+            "accountPassword": "1234567"            
+		},
+        "LockedUserInfor": {
+		    "account": "lockedUser",
+            "accountPassword": "1234567"            
+		},
+        "Resturl" : "petstore.swagger.io/v2/pet"
+    } 
+}
