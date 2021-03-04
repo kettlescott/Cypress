@@ -194,12 +194,14 @@ describe("login with username and password", () => {
     verifyVisible(PASSWORD_CSS);
   });
 
-  it("Bug : bounday test expected count larger than stocks", () => {
-    let max_range = 2067;
+  it("Bug : system crash bounday test expected count larger than stocks", () => {
+    let max_range = 1 << 30 ;
     var pets = items();
     addItem([pets["Large Angelfish"]]);
     setQuantityByProductId([pets["Large Angelfish"]], max_range);
     updateCart();
+    checkout();
+    confirmOrder();
     //expected fail here, the Quantity is larger than stocks ,
     //the value should not be accepted and an error message should comeup;
     cy.get(".error").should("be.visible");
@@ -217,10 +219,10 @@ describe("login with username and password", () => {
   });
 
   it("Bug : bounday test Quantity is a decimal value, total cost should be zero", () => {
-    let negative = 10.5;
+    let decimal = 10.5;
     var pets = items();
     addItem([pets["Large Angelfish"]]);
-    setQuantityByProductId([pets["Large Angelfish"]], negative);
+    setQuantityByProductId([pets["Large Angelfish"]], decimal);
     updateCart();
     //the decimal value should not be accepted
     //expected failed here
