@@ -27,7 +27,7 @@
 > Please refer to [accounts.js](https://github.com/kettlescott/Cypress/blob/master/cypress/support/accounts.js) for more information
 
 ## Project structure
-![alt text](https://github.com/kettlescott/Cypress/blob/master/project.PNG)
+![alt text](project.PNG)
 
 # Known Issues (Bugs and tests are expected to fail)
 | UI Test| 
