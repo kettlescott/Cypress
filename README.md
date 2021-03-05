@@ -60,5 +60,7 @@ Configuration is under
 > Two users are created for the suite , one is a normal user the another one is locked user.
 > If you create you own users , please update this [configuration file] (https://github.com/kettlescott/Cypress.gituration)  
 
+## Bugs 
+> Bugs are listed under bug.pdf
 
 
