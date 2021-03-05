@@ -108,7 +108,7 @@ const verifyVisible = (css) => {
   cy.get(css).should("be.visible");
 };
 
-describe("login with username and password", () => {
+describe("pet store UI Automation", () => {
   beforeEach(() => {
     const { account, accountPassword } = Cypress.env("UserInfor");
     const login_url = Cypress.env("Url");
@@ -195,7 +195,7 @@ describe("login with username and password", () => {
   });
 
   it("Bug : system crash bounday test expected count larger than stocks", () => {
-    let max_range = 1 << 30 ;
+    let max_range = 1 << 30;
     var pets = items();
     addItem([pets["Large Angelfish"]]);
     setQuantityByProductId([pets["Large Angelfish"]], max_range);
