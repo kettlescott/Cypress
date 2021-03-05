@@ -22,10 +22,6 @@
 > The idea behind this framework is pretty straigtforward, I just follow the Cypress standard test by speficication
 > I also added 3 customized commands into cypress command package, for more information please refer to [accounts.js](https://github.com/kettlescott/Cypress/blob/master/cypress/support/accounts.js) 
 
-## Runtime Optimization
-> The project is using HTTP POST and GET to login and logout which is at least 5 times faster than using UI manually   
-> Please refer to [accounts.js](https://github.com/kettlescott/Cypress/blob/master/cypress/support/accounts.js) for more information
-
 ## Project structure
 ![alt text](project.PNG)
 
