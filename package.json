@@ -1,8 +1,8 @@
 {
   "name": "regressiontests",
   "version": "1.0.0",
-  "description": "UI integration tests for the UI", 
+  "description": "UI integration tests for the UI",
   "devDependencies": {
     "cypress": "^6.3.0"
-  }  
+  }
 }
